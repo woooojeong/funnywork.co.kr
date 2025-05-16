@@ -1,0 +1,9 @@
+This directory contains the following images:
+- logo.png: Company logo
+- slide1.jpg: About Funnywork slide image
+- slide2.jpg: IT Service Partner slide image
+- slide3.jpg: AI System Consultant slide image
+- ito-business.jpg: ITO business card image
+- ai-business.jpg: AI business card image
+
+Please replace these placeholder images with actual company images. 
