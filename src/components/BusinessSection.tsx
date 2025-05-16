@@ -5,13 +5,13 @@ const businessCards = [
     title: 'ITO사업',
     description: '기업의 IT 인프라 구축부터 운영까지 토탈 IT 아웃소싱 서비스를 제공합니다.',
     image: '/images/ito-business.jpg',
-    link: '/reference'
+    link: '/business'
   },
   {
     title: 'AI',
     description: '최신 AI 기술을 활용한 맞춤형 솔루션으로 비즈니스 혁신을 지원합니다.',
     image: '/images/ai-business.jpg',
-    link: '/reference'
+    link: '/business'
   }
 ];
 

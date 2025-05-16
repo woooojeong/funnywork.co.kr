@@ -3,28 +3,28 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const slides = [
-  {
+ {
     id: 1,
+    title: 'About Us',
+    subtitle: '함께 성장하며 가치를 창출하는 신뢰의 IT 파트너, (주)퍼니웍',
+    description: '퍼니웍은 지난 20여 년의 노하우를 바탕으로 더 큰 미래를 꿈꾸며 지속 가능한 경영을 추진하기 위해 최선을 다하고 있습니다.',
+    image: '/images/funny_temp.png',
+    buttonText: '회사소개 바로가기'
+ },
+ {
+    id: 2,
     title: 'IT Service Partner',
     subtitle: '시스템 통합 구축 및 유지보수',
     description: '시스템 구축 및 유지보수를 포함 스마트 뱅킹, 비대면 서비스 구축, 웹·모바일 서비스, 웹접근성 및 컨설팅 등 20년간 고객의 성공을 함께 한 IT 서비스 전문 파트너입니다.',
-    image: '/images/carousel/it-service.jpg',
-    buttonText: '자세히 보기'
-  },
-  {
-    id: 2,
-    title: 'AI System Consultant',
-    subtitle: '인공지능 Chatbot, AI 포털 구축 및 컨설팅',
-    description: '차세대 IT 서비스 플랫폼 인공지능 챗봇 시스템 및 AI 포털 시스템의 구축 및 컨설팅으로 4th Wave 시대를 함께하는 AI 시스템 컨설턴트로 도약합니다.',
-    image: '/images/carousel/ai-consultant.jpg',
+    image: '/images/server-7239721_1920_1.jpg',
     buttonText: '자세히 보기'
   },
   {
     id: 3,
-    title: 'AI Solution Provider',
-    subtitle: 'AI 솔루션 구축 및 상용화',
-    description: '자연어 대화 플랫폼, 지능형 검색 솔루션, 여론 모니터링 솔루션, AI 고객정보관리 등 인공지능 기반 솔루션 구축 및 상용화로 최적화된 AI 시스템을 제공하겠습니다.',
-    image: '/images/carousel/ai-solution.jpg',
+    title: 'AI System Consultant',
+    subtitle: '인공지능 Chatbot, AI 포털 구축 및 컨설팅',
+    description: '차세대 IT 서비스 플랫폼 인공지능 챗봇 시스템 및 AI 포털 시스템의 구축 및 컨설팅으로 4th Wave 시대를 함께하는 AI 시스템 컨설턴트로 도약합니다.',
+    image: '/images/ai-8859373_1920.jpg',
     buttonText: '자세히 보기'
   }
 ];
