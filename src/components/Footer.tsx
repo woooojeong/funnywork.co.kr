@@ -57,19 +57,19 @@ const Footer = () => {
       </button>
 
       <div className="container mx-auto px-10 py-8">
-        <div className="flex flex-col md:flex-row justify-between items-start py-8">
+        <div className="flex flex-col md:flex-row justify-between items-start py-8 md:gap-x-12">
           {/* Logo and Company Info */}
           <div className="mb-8 md:mb-0">
             <div className="mb-4">
               <img
                 src="/images/funnylogo.png"
                 alt="FunnyWork Logo"
-                className="h-8"
+                className="h-10"
               />
               <img
                 src="/images/SK_PBP_logo.png"
                 alt="SK PBP Logo"
-                className="h-5"
+                className="w-40 h-auto object-contain"
               />
             </div>
             <div className="text-sm text-gray-600 space-y-2">
@@ -79,9 +79,9 @@ const Footer = () => {
           </div>
 
           {/* Navigation Links */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-2 w-1/2 md:pl-12 text-left">
             {Object.entries(navItems).map(([key, items]) => (
-              <div key={key} className="min-w-[100px]">
+              <div key={key} className="min-w-0 max-w-[120px] w-full">
                 <h3 className="text-gray-900 font-bold mb-2">{key}</h3>
                 <ul className="space-y-1">
                   {items.map((item) => (
