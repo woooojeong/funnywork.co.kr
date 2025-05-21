@@ -1,8 +1,13 @@
+import SideNav from '../../components/SideNav';
+
 export default function SupportPage() {
   return (
-    <div className="pt-16 container mx-auto px-4 text-white">
-      <h1 className="text-3xl font-bold mb-8">고객지원</h1>
-      {/* 고객지원 내용 */}
+    <div className="flex">
+      <SideNav />
+      <div className="flex-1 pt-16 container mx-auto px-4 text-white">
+        <h1 className="text-3xl font-bold mb-8">고객지원</h1>
+        {/* 고객지원 내용 */}
+      </div>
     </div>
   );
 } 

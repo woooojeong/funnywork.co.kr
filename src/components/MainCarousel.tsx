@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const slides = [
  {
@@ -16,7 +17,7 @@ const slides = [
     title: 'IT Service Partner',
     subtitle: '시스템 통합 구축 및 유지보수',
     description: '시스템 구축 및 유지보수를 포함 스마트 뱅킹, 비대면 서비스 구축, 웹·모바일 서비스, 웹접근성 및 컨설팅 등 20년간 고객의 성공을 함께 한 IT 서비스 전문 파트너입니다.',
-    image: '/images/server-7239721_1920_1.jpg',
+    image: '/images/business-8256837_1280.jpg',
     buttonText: '자세히 보기'
   },
   {
@@ -32,6 +33,7 @@ const slides = [
 const MainCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -116,6 +118,11 @@ const MainCarousel = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9, duration: 0.8 }}
                 className="px-8 py-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 transition-colors"
+                onClick={() => {
+                  if (slides[currentSlide].id === 1) {
+                    navigate('/company/about');
+                  }
+                }}
               >
                 {slides[currentSlide].buttonText}
               </motion.button>

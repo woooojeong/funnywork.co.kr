@@ -24,7 +24,7 @@ const Header = () => {
 
   const navItems: NavItems = {
     '회사소개': {
-      path: '/company',
+      path: '/company/about',
       items: [
         { name: '회사소개', path: '/company/about' },
         { name: '연혁', path: '/company/history' },
@@ -65,15 +65,16 @@ const Header = () => {
 
     if (isMainPage) {
       window.addEventListener('scroll', handleScroll);
+      handleScroll();
       return () => window.removeEventListener('scroll', handleScroll);
     } else {
       setIsScrolled(true);
     }
-  }, [isMainPage]);
+  }, [isMainPage, location.pathname]);
 
   const getPath = (key: string) => {
     const section = navItems[key];
-    return section.items[0]?.path || section.path;
+    return section.path;
   };
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -138,11 +139,19 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <div 
-            className="hidden md:flex items-start"
+            className="hidden md:flex items-start mr-10"
             onMouseEnter={() => setShowDropdown(true)}
             onMouseLeave={() => setShowDropdown(false)}
           >
-            <div className="flex justify-end space-x-16 w-full">
+            <div className="flex justify-end space-x-16 w-full ">
+              <a
+                href="/"
+                className={`${linkClass} flex items-center font-bold text-[#1de9ff]`}
+                onClick={(e) => handleNavigation('/', e)}
+              >
+                <span className="w-2 h-2 rounded-full bg-[#1de9ff] mr-2 inline-block align-middle"></span>
+                Home
+              </a>
               {Object.entries(navItems).map(([key, section]) => (
                 <a
                   key={key}
@@ -174,10 +183,10 @@ const Header = () => {
           >
             <div className="container mx-auto px-1">
               <div className="flex justify-end py-8">
-                <div className="flex justify-end space-x-16 w-full">
+                <div className="flex justify-end space-x-10 w-full">
                   {Object.entries(navItems).map(([key, section]) => (
                     <div key={key} className="min-w-[60px]">
-                      <ul className="space-y-3">
+                      <ul className="space-y-3 mr-10">
                         {section.items.map((item) => (
                           <li key={item.path}>
                             <a

@@ -17,9 +17,9 @@ const businessCards = [
 
 const BusinessSection = () => {
   return (
-    <section className="py-20 bg-navy-700">
+    <section className="py-20">
       <div className="container mx-auto px-4 w-full">
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-navy-700 text-center mb-12">
           사업분야
         </h2>
         <div className="flex flex-col space-y-8">

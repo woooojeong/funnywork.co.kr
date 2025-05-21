@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
+import SideNav from '../../components/SideNav';
 
 interface HistoryItemProps {
   year: string;
@@ -187,53 +188,58 @@ const historyData = [
 
 export default function HistoryPage() {
   return (
-    <div className="pt-24 container mx-auto px-4 min-h-screen pb-20 bg-white">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
-          <motion.h1 
-            className="text-4xl font-bold mb-4 text-indigo-900"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            연혁
-          </motion.h1>
-          <motion.h2
-            className="text-xl text-indigo-600 font-medium mb-12"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            기술과 신뢰, 그 위에 세운 시간의 증거
-          </motion.h2>
-          <motion.div
-            className="text-[15px] text-gray-600 leading-relaxed max-w-4xl mx-auto space-y-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <p>
-              퍼니웍은 2001년 설립 이래, 끊임없는 혁신과 도전으로 디지털 전환의 흐름을 선도해왔습니다.
-            </p>
-            <p>
-              기술력으로 시장을 이끌고, 성과로 신뢰를 쌓아온 우리는 AI·챗봇, Big Data, Contact Center, IT 플랫폼 등 다양한 분야에서<br />
-              국내 유수의 금융·공공기관과 함께하며 '고객경험의 미래'를 현실로 만들어 왔습니다.
-            </p>
-            <p>
-              이제 우리는 단순한 기술 공급자를 넘어, 고객의 비즈니스 성장을 함께 설계하는 Total Business Partner로 도약합니다.
-            </p>
-          </motion.div>
-        </div>
-        <div className="relative">
-          {historyData.map((item, index) => (
-            <HistoryItem
-              key={item.year}
-              year={item.year}
-              events={item.events}
-              index={index}
-              showYearMark={parseInt(item.year) % 5 === 0}
-            />
-          ))}
+    <div className="flex">
+      <SideNav />
+      <div className="flex-1">
+        <div className="pt-24 container mx-auto px-4 min-h-screen pb-20 bg-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-20 mt-20">
+              <motion.h1 
+                className="text-5xl font-bold mb-10 text-indigo-900"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                연혁
+              </motion.h1>
+              <motion.h2
+                className="text-xl text-indigo-600 font-bold mb-12"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                기술과 신뢰, 그 위에 세운 시간의 증거
+              </motion.h2>
+              <motion.div
+                className="text-[15px] text-gray-600 leading-relaxed max-w-4xl mx-auto space-y-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <p>
+                  퍼니웍은 2001년 설립 이래, 끊임없는 혁신과 도전으로 디지털 전환의 흐름을 선도해왔습니다.
+                </p>
+                <p>
+                  기술력으로 시장을 이끌고, 성과로 신뢰를 쌓아온 우리는 AI·챗봇, Big Data, Contact Center, IT 플랫폼 등 다양한 분야에서<br />
+                  국내 유수의 금융·공공기관과 함께하며 '고객경험의 미래'를 현실로 만들어 왔습니다.
+                </p>
+                <p>
+                  이제 우리는 단순한 기술 공급자를 넘어, 고객의 비즈니스 성장을 함께 설계하는 Total Business Partner로 도약합니다.
+                </p>
+              </motion.div>
+            </div>
+            <div className="relative">
+              {historyData.map((item, index) => (
+                <HistoryItem
+                  key={item.year}
+                  year={item.year}
+                  events={item.events}
+                  index={index}
+                  showYearMark={parseInt(item.year) % 5 === 0}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
