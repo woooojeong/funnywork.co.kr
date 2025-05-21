@@ -2,9 +2,11 @@ import SideNav from '../../components/SideNav';
 
 export default function AboutPage() {
   return (
-    <div className="flex">
+    <div>
+      <div className="w-1/4">
       <SideNav />
-      <div className="flex-1 pt-16 container mx-auto px-4 text-white">
+      </div>
+      <div className="flex flex-1 w-3/4 pt-16 container mx-auto px-4 text-white">
         <h1 className="text-3xl font-bold mb-8">회사소개</h1>
         <div className="space-y-12">
           <section className="space-y-6">

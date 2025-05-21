@@ -34,7 +34,7 @@ const NAV_CONFIG = {
   '/support': {
     title: '고객지원',
     items: [
-      { name: 'CONTACT US', path: '/support/contact' }
+      { name: 'CONTACT US', path: '/support' }
     ]
   }
 };
@@ -58,10 +58,10 @@ const SideNav: React.FC = () => {
       <div className="absolute left-0 top-24 ml-12">
         <div className="w-64 rounded-xl shadow-2xl bg-white border border-gray-200 overflow-hidden">
           {/* 상단 타이틀 */}
-          <div className="bg-indigo-700 text-white text-xl font-bold px-6 py-5 relative">
+          <div className="bg-indigo-800 text-white text-xl font-bold px-6 py-5 relative">
             {nav.title}
             {/* 왼쪽 포인트 바 */}
-            <span className="absolute left-0 top-0 h-full w-3 bg-[#1de9ff] rounded-tr-xl rounded-br-xl"></span>
+            <span className="absolute left-0 top-0 h-full w-3 bg-blue-600 rounded-tr-xl rounded-br-xl"></span>
           </div>
           {/* 메뉴 목록 */}
           <ul>
@@ -74,7 +74,7 @@ const SideNav: React.FC = () => {
                     className={
                       `w-full text-left px-6 py-4 border-b border-gray-100 font-semibold transition ` +
                       (isActive
-                        ? 'bg-[#1de9ff] text-white'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-white text-gray-800 hover:bg-gray-50')
                     }
                   >

@@ -26,7 +26,7 @@ const Header = () => {
     '회사소개': {
       path: '/company/about',
       items: [
-        { name: '회사소개', path: '/company/about' },
+        // { name: '회사소개', path: '/company/about' },
         { name: '연혁', path: '/company/history' },
         { name: 'CEO', path: '/company/ceo' }
       ]
@@ -41,6 +41,7 @@ const Header = () => {
     'ESG경영': {
       path: '/esg',
       items: [
+        // { name: 'ESG소개', path: '/esg/esgIntro' },
         { name: 'ESG목록', path: '/esg/list' },
         { name: '제보하기', path: '/esg/report' }
       ]
@@ -52,7 +53,7 @@ const Header = () => {
     '고객지원': {
       path: '/support',
       items: [
-        { name: 'CONTACT US', path: '/support/contact' }
+        { name: 'CONTACT US', path: '/support/contac' }
       ]
     }
   };
