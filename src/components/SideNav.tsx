@@ -76,13 +76,17 @@ export default function SideNav({ section }: Props) {
 
   const handleItemClick = (item: any) => {
     const isCurrentlyOpen = openItem === item.name;
-    const nextOpenItem = isCurrentlyOpen ? null : item.name;
-    setOpenItem(nextOpenItem);
+    const hasChildren = !!item.children;
 
-    if (!isCurrentlyOpen && item.children) {
-      navigate(item.children[0].path);
-    } else if (!item.children) {
-      navigate(item.path);
+    if (isCurrentlyOpen) {
+      setOpenItem(null); // 접기
+    } else {
+      setOpenItem(item.name); // 펼치기
+      if (hasChildren) {
+        navigate(item.children[0].path); // 처음 펼칠 때만 이동
+      } else {
+        navigate(item.path);
+      }
     }
   };
 
@@ -93,7 +97,7 @@ export default function SideNav({ section }: Props) {
       </h3>
       <ul>
         {nav.items.map((item, idx) => {
-          const isOpen = openItem === item.name || item.children?.some(child => location.pathname === child.path);
+          const isOpen = openItem === item.name;
           return (
             <div key={item.path}>
               {idx > 0 && <div className="my-3 mx-auto border-t border-gray-300 w-4/5" />}
