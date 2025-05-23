@@ -1,8 +1,20 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
-const NAV_CONFIG = {
-  '/company': {
+type Props = {
+  section: string;
+};
+
+const NAV_CONFIG: Record<string, {
+  title: string;
+  items: {
+    name: string;
+    path: string;
+    children?: { name: string; path: string }[];
+  }[];
+}> = {
+  company: {
     title: '회사소개',
     items: [
       { name: '회사소개', path: '/company/about' },
@@ -10,87 +22,116 @@ const NAV_CONFIG = {
       { name: 'CEO', path: '/company/ceo' }
     ]
   },
-  '/business': {
+  business: {
     title: '사업분야',
     items: [
-      { name: 'IT서비스', path: '/business/it-service' },
-      { name: 'AI', path: '/business/ai' }
+      { name: 'IT서비스', path: '/business/itservice' },
+      { name: 'AI 시스템', path: '/business/aisystem' }
     ]
   },
-  '/esg': {
+  esg: {
     title: 'ESG경영',
     items: [
       { name: 'ESG 소개', path: '/esg' },
-      { name: 'ESG 목록', path: '/esg/list' },
+      {
+        name: 'ESG 목록',
+        path: '/esg/list',
+        children: [
+          { name: '환경', path: '/esg/list/environment' },
+          { name: '사회', path: '/esg/list/social' },
+          { name: '지배구조', path: '/esg/list/governance' }
+        ]
+      },
       { name: '제보하기', path: '/esg/report' }
     ]
   },
-  '/reference': {
+  reference: {
     title: '레퍼런스',
     items: [
       { name: '레퍼런스', path: '/reference' }
     ]
   },
-  '/support': {
+  support: {
     title: '고객지원',
     items: [
-      { name: 'CONTACT US', path: '/support' }
+      { name: 'Contact Us', path: '/support' }
     ]
   }
 };
 
-const getSection = (pathname) => {
-  const keys = Object.keys(NAV_CONFIG).sort((a, b) => b.length - a.length);
-  return keys.find(key => pathname.startsWith(key));
-};
-
-const SideNav: React.FC = () => {
+export default function SideNav({ section }: Props) {
+  const nav = NAV_CONFIG[section];
   const location = useLocation();
   const navigate = useNavigate();
-  const currentPath = location.pathname;
-  const sectionKey = getSection(currentPath);
-  const nav = NAV_CONFIG[sectionKey] || null;
+  const [openItem, setOpenItem] = useState<string | null>(null);
+
+  useEffect(() => {
+    const matched = nav?.items.find(item =>
+      item.children?.some(child => location.pathname === child.path)
+    );
+    if (matched) setOpenItem(matched.name);
+  }, [location.pathname, nav]);
 
   if (!nav) return null;
 
-  return (
-    <aside className="relative z-30">
-      <div className="absolute left-0 top-24 ml-12">
-        <div className="w-64 rounded-xl shadow-2xl bg-white border border-gray-200 overflow-hidden">
-          {/* 상단 타이틀 */}
-          <div className="bg-indigo-800 text-white text-xl font-bold px-6 py-5 relative">
-            {nav.title}
-            {/* 왼쪽 포인트 바 */}
-            <span className="absolute left-0 top-0 h-full w-3 bg-blue-600 rounded-tr-xl rounded-br-xl"></span>
-          </div>
-          {/* 메뉴 목록 */}
-          <ul>
-            {nav.items.map(item => {
-              const isActive = currentPath === item.path;
-              return (
-                <li key={item.path}>
-                  <button
-                    onClick={() => navigate(item.path)}
-                    className={
-                      `w-full text-left px-6 py-4 border-b border-gray-100 font-semibold transition ` +
-                      (isActive
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-white text-gray-800 hover:bg-gray-50')
-                    }
-                  >
-                    {item.name}
-                    {isActive && (
-                      <span className="float-right text-lg font-bold">›</span>
-                    )}
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </aside>
-  );
-};
+  const handleItemClick = (item: any) => {
+    const isCurrentlyOpen = openItem === item.name;
+    const nextOpenItem = isCurrentlyOpen ? null : item.name;
+    setOpenItem(nextOpenItem);
 
-export default SideNav; 
+    if (!isCurrentlyOpen && item.children) {
+      navigate(item.children[0].path);
+    } else if (!item.children) {
+      navigate(item.path);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-lg mx-auto pt-28">
+      <h3 className="bg-indigo-900 text-white text-center text-lg font-bold px-4 py-5 rounded-t-lg">
+        {nav.title}
+      </h3>
+      <ul>
+        {nav.items.map((item, idx) => {
+          const isOpen = openItem === item.name || item.children?.some(child => location.pathname === child.path);
+          return (
+            <div key={item.path}>
+              {idx > 0 && <div className="my-3 mx-auto border-t border-gray-300 w-4/5" />}
+              <button
+                onClick={() => handleItemClick(item)}
+                className={`flex justify-between items-center w-full px-4 py-2 text-sm font-medium rounded transition border
+                  ${isOpen ? 'bg-blue-200 text-black font-semibold border-blue-300' : 'text-gray-700 hover:bg-blue-100 border-transparent'}`}
+              >
+                <span>{item.name}</span>
+                {item.children && <span className="ml-2">{isOpen ? '∧' : '∨'}</span>}
+              </button>
+              <AnimatePresence initial={false}>
+                {isOpen && item.children && (
+                  <motion.ul
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-2 space-y-1"
+                  >
+                    {item.children.map((sub) => (
+                      <li key={sub.path}>
+                        <button
+                          onClick={() => navigate(sub.path)}
+                          className={`block w-full px-4 py-2 text-sm border rounded transition text-left
+                            ${location.pathname === sub.path ? 'border-blue-500 font-semibold text-black bg-blue-50' : 'text-gray-600 hover:bg-blue-50 border-transparent'}`}
+                        >
+                          • {sub.name}
+                        </button>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}

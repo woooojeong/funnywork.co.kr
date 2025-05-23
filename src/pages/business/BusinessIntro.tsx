@@ -1,0 +1,1 @@
+export default function BusinessIntro() { return <div>Intro</div>; }

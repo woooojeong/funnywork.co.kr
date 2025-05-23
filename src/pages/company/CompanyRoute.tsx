@@ -1,14 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 import AboutPage from './AboutPage';
-import HistoryPage from './HistoryPage';
 import CEOPage from './CEOPage';
+import HistoryPage from './HistoryPage';
 
-export default function CompanyPage() {
+export default function CompanyRoute() {
   return (
     <Routes>
       <Route path="about" element={<AboutPage />} />
-      <Route path="history" element={<HistoryPage />} />
       <Route path="ceo" element={<CEOPage />} />
+      <Route path="history" element={<HistoryPage />} />
     </Routes>
   );
-} 
+}

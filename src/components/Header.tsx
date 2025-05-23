@@ -147,10 +147,10 @@ const Header = () => {
             <div className="flex justify-end space-x-16 w-full ">
               <a
                 href="/"
-                className={`${linkClass} flex items-center font-bold text-[#1de9ff]`}
+                className={`${linkClass} flex items-center font-bold text-blue-600`}
                 onClick={(e) => handleNavigation('/', e)}
               >
-                <span className="w-2 h-2 rounded-full bg-[#1de9ff] mr-2 inline-block align-middle"></span>
+                <span className="w-2 h-2 rounded-full bg-blue-600 mr-2 inline-block align-middle"></span>
                 Home
               </a>
               {Object.entries(navItems).map(([key, section]) => (

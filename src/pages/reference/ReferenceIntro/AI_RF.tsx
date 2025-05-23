@@ -1,0 +1,1 @@
+export default function AI_RF() { return <div>AI</div>; }
